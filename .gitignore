@@ -1,0 +1,62 @@
+# Exclude windows config files, shortcuts and temporary files
+*.db
+*.ini
+*.lnk
+*.url
+~*
+$RECYCLE.BIN/
+
+# Exclude CMake's build folder.
+[Bb]uild/*
+
+# Exclude test and tmp files
+*test*
+*tmp*
+
+# Ignore vim files
+*~
+*.swp
+
+# Backups (I mean... we have git.)
+Backup*/
+
+# Configure ignore and track for Visual Studio and Visual Studio Code
+.vs/*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
