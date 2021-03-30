@@ -5,25 +5,6 @@
 #define C 4
 #define D 4
 
-/// @brief Dump a 3-dimensional array to the console
-/// @param r Index of last row
-/// @param c Index of last column
-/// @param d Index of depth
-/// @param cube The cube to print
-void dump_cube(int r, int c, int d, int cube[R][C][D])
-{
-	for (int i = 0; i < r; i++)
-	{
-		for (int j = 0; j < c; j++)
-		{
-			for (int k = 0; k < d; k++)
-				std::cout << std::setw(3) << std::setfill('0') << cube[i][j][k] << ' ';
-			std::cout << '\t';
-		}
-		std::cout << '\n';
-	}
-}
-
 /// @brief Rotate the cube clockwise "from the top"
 /// @param r The number of rows "from the front"
 /// @param c The number of columns "from the front"
@@ -31,12 +12,9 @@ void dump_cube(int r, int c, int d, int cube[R][C][D])
 /// @param cube The 3-dimensional array to be used as the cube
 void rotate_cube(const int& r, const int& c, const int& d, int cube[R][C][D])
 {
+	// Rotate the cube by rotating each of it's rows as matrices.
 	for (int row = 0; row < r; row++)
 	{
-		int col = 0, dep = 0;    // Declare starting points at 0
-		int ecol = c, edep = d;  // Isolate endings in each layer of the cube from the constant size of the cube
-		int prev, curr;
-
 		/**
 		 * col  - Starting column index
 		 * ecol - Ending column index
@@ -44,6 +22,10 @@ void rotate_cube(const int& r, const int& c, const int& d, int cube[R][C][D])
 		 * edep - Ending depth index
 		 * i    - Iterator
 		 */
+
+		int col = 0, dep = 0;    // Declare starting points at 0
+		int ecol = c, edep = d;  // Isolate endings in each layer of the cube from the constant size of the cube
+		int prev, curr;
 
 		while (col < ecol && dep < edep)
 		{
@@ -58,7 +40,7 @@ void rotate_cube(const int& r, const int& c, const int& d, int cube[R][C][D])
 			{
 				curr = cube[row][i][dep];  // Store value of position for later
 				cube[row][i][dep] = prev;  // Override current position
-				prev = curr;               // Update value of next position
+				prev = curr;               // Update value for next position
 			}
 			dep++;
 
@@ -67,16 +49,16 @@ void rotate_cube(const int& r, const int& c, const int& d, int cube[R][C][D])
 			{
 				curr = cube[row][edep - 1][i];  // Store value of position for later
 				cube[row][edep - 1][i] = prev;  // Override current position
-				prev = curr;                    // Update value of next position
+				prev = curr;                    // Update value for next position
 			}
 			ecol--;
 
-			// Rotate back side
+			// Rotate back side :|
 			for (int i = ecol - 1; i >= col; i--)
 			{
 				curr = cube[row][i][edep - 1];  // Store value of position for later
 				cube[row][i][edep - 1] = prev;  // Override current position
-				prev = curr;                    // Update value of next position
+				prev = curr;                    // Update value for next position
 			}
 			edep--;
 
@@ -85,10 +67,29 @@ void rotate_cube(const int& r, const int& c, const int& d, int cube[R][C][D])
 			{
 				curr = cube[row][col][i];  // Store value of position for later
 				cube[row][col][i] = prev;  // Override current position
-				prev = curr;               // Update value of next position
+				prev = curr;               // Update value for next position
 			}
 			col++;
 		}
+	}
+}
+
+/// @brief Dump a 3-dimensional array to the console
+/// @param r Index of last row
+/// @param c Index of last column
+/// @param d Index of depth
+/// @param cube The cube to print
+void dump_cube(const int& r, const int& c, const int& d, int cube[R][C][D])
+{
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			for (int k = 0; k < d; k++)
+				std::cout << std::setw(3) << std::setfill('0') << cube[i][j][k] << ' ';
+			std::cout << '\t';
+		}
+		std::cout << '\n';
 	}
 }
 
@@ -102,10 +103,14 @@ int main()
 			for (int k = 0; k < D; k++)
 				cube[i][j][k] = c++;
 
+	// Print original cube to the console.
 	std::cout << "\033[36mOriginal:\033[00m\n";
 	dump_cube(R, C, D, cube);
 
+	// Rotate the cube.
 	rotate_cube(R, C, D, cube);
+
+	// Print modified cube to the console.
 	std::cout << "\n\033[36mModified:\033[00m\n";
 	dump_cube(R, C, D, cube);
 
