@@ -5,7 +5,7 @@
 #define C 4
 #define D 4
 
-/// @brief Rotate the cube clockwise "from the top"
+/// @brief Rotate the cube counter-clockwise "from the top" (sideways from the front)
 /// @param r The number of rows "from the front"
 /// @param c The number of columns "from the front"
 /// @param d The index of depth "from the front"
