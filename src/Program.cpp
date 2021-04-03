@@ -1,9 +1,9 @@
 #include <iomanip>
 #include <iostream>
 
-#define R 4
-#define C 4
-#define D 4
+#define R 4  // Rows aka Y
+#define C 4  // Columns aka X
+#define D 4  // Depth aka Z
 
 /// @brief Rotate the cube counter-clockwise "from the top" (sideways from the front)
 /// @param r The number of rows "from the front"
