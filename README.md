@@ -30,7 +30,7 @@ You must first build the program to be able to run it.
 
 ```bash
 $ cd /path/to/cloned_repo
-$ build/src/cube-rotation
+$ build/cube-rotation
 Original:
 001 002 003     004 005 006     007 008 009
 010 011 012     013 014 015     016 017 018
@@ -67,7 +67,7 @@ To modify the size of the cube, you have to edit the [source file](src/Program.c
 - After recompiling, you can run the file again:
   ```bash
   $ cd /path/to/cloned_repo
-  $ build/src/cube-rotation
+  $ build/cube-rotation
   ```
 
 ## License
