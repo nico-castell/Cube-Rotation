@@ -12,20 +12,25 @@
 /// @param cube The 3-dimensional array to be used as the cube
 void rotate_cube(const int& r, const int& c, const int& d, int cube[R][C][D])
 {
+	/**
+	 * col  - Starting column index
+	 * ecol - Ending column index
+	 * dep  - Starting depth index
+	 * edep - Ending depth index
+	 * curr - The value read from the current position
+	 * prev - The value from previous position, to write to the current position
+	 * i    - Iterator
+	 */
+
+	int col = 0, ecol = 0, dep = 0, edep = 0, curr = 0, prev = 0;
+
 	// Rotate the cube by rotating each of it's rows as matrices.
 	for (int row = 0; row < r; row++)
 	{
-		/**
-		 * col  - Starting column index
-		 * ecol - Ending column index
-		 * dep  - Starting depth index
-		 * edep - Ending depth index
-		 * i    - Iterator
-		 */
 
-		int col = 0, dep = 0;    // Declare starting points at 0
-		int ecol = c, edep = d;  // Isolate endings in each layer of the cube from the constant size of the cube
-		int prev, curr;
+		// Restart contolers for this row
+		col = dep = curr = prev = 0;
+		ecol = c, edep = d;
 
 		while (col < ecol && dep < edep)
 		{
@@ -96,7 +101,7 @@ void dump_cube(const int& r, const int& c, const int& d, int cube[R][C][D])
 int main()
 {
 	// Initialize the cube and fill it programmatically.
-	int cube[R][C][D];
+	int cube[R][C][D] = { 0 };
 	int c = 1;
 	for (int i = 0; i < R; i++)
 		for (int j = 0; j < C; j++)
