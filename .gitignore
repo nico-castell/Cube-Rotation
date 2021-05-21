@@ -8,6 +8,7 @@ $RECYCLE.BIN/
 
 # Exclude CMake's build folder.
 [Bb]uild/*
+[Oo]ut/*
 
 # Exclude test and tmp files
 *test*
